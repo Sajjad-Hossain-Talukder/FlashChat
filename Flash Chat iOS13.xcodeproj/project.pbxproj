@@ -20,6 +20,7 @@
 		4AEA17566E35098E3E7CF31D /* Pods_Flash_Chat_iOS13.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 301AEAF209143DAC9FBC6358 /* Pods_Flash_Chat_iOS13.framework */; };
 		8316D4222B2EEE6F00D98FB7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8316D4212B2EEE6F00D98FB7 /* GoogleService-Info.plist */; };
 		8316D4242B2F016000D98FB7 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8316D4232B2F016000D98FB7 /* Constants.swift */; };
+		8316D4262B2F0F1500D98FB7 /* Messages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8316D4252B2F0F1500D98FB7 /* Messages.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +40,7 @@
 		301AEAF209143DAC9FBC6358 /* Pods_Flash_Chat_iOS13.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Flash_Chat_iOS13.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8316D4212B2EEE6F00D98FB7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		8316D4232B2F016000D98FB7 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		8316D4252B2F0F1500D98FB7 /* Messages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Messages.swift; path = "Flash Chat iOS13/Messages.swift"; sourceTree = SOURCE_ROOT; };
 		BAEB5EEDDE5C78667EDD5B0F /* Pods-Flash Chat iOS13.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Flash Chat iOS13.debug.xcconfig"; path = "Target Support Files/Pods-Flash Chat iOS13/Pods-Flash Chat iOS13.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -112,6 +114,7 @@
 		0B628194235DF03A00E35CAF /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				8316D4252B2F0F1500D98FB7 /* Messages.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -251,6 +254,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0B62818B235DF00000E35CAF /* WelcomeViewController.swift in Sources */,
+				8316D4262B2F0F1500D98FB7 /* Messages.swift in Sources */,
 				0B628177235DEE8100E35CAF /* AppDelegate.swift in Sources */,
 				0B628179235DEE8100E35CAF /* SceneDelegate.swift in Sources */,
 				0B62818F235DF01000E35CAF /* LoginViewController.swift in Sources */,

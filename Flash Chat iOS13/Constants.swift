@@ -11,4 +11,5 @@ struct K {
     static let registerSegue = "RegisterToChat"
     static let loginSegue = "LoginToChat"
     static let appName = "⚡️FlashChat"
+    static let cellIdentifier = "ReusableCell"
 }
