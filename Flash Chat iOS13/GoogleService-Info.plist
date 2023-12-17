@@ -3,17 +3,17 @@
 <plist version="1.0">
 <dict>
 	<key>API_KEY</key>
-	<string>AIzaSyA6bcsCFfv_TQniHVOVHeviJ1Lze6uyMp8</string>
+	<string>AIzaSyA2aztpGvLuyldpQ9aMqxSvH336R96kkcE</string>
 	<key>GCM_SENDER_ID</key>
-	<string>726590312978</string>
+	<string>629964044896</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
 	<string>xotech.FlashChat</string>
 	<key>PROJECT_ID</key>
-	<string>flashchat-f00ba</string>
+	<string>flashchat-8d28f</string>
 	<key>STORAGE_BUCKET</key>
-	<string>flashchat-f00ba.appspot.com</string>
+	<string>flashchat-8d28f.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -25,6 +25,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:726590312978:ios:ad7a37abd50e51e4e5becb</string>
+	<string>1:629964044896:ios:734b5aef4ce38e709ce105</string>
 </dict>
 </plist>
