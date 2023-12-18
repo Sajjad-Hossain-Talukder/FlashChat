@@ -8,13 +8,15 @@
 
 import UIKit
 import FirebaseAuth
+import FirebaseFirestore
 
 class ChatViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var messageTextfield: UITextField!
+    var db = Firestore.firestore()
     
-    let chatHistory: [Messages] = [Messages(sender: "sajjad.xotech.com@gmail.com", body: "Hey fjgf dffsjddsdsdf f f df gsdkd f sdkfg dsgf gdfgd gd dsf s kf kkdfj    f df df gkdgfdgf dgf dgf dsfg d dsfg d fsdf f ddsfhgdds f") , Messages(sender: "arman.xotech.com@gmail.com", body: "Hello!!"), Messages(sender: "sajjad.xotech.com@gmail.com", body: "What's up ?")]
+    var chatHistory: [Messages] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,11 +28,59 @@ class ChatViewController: UIViewController {
         navigationItem.hidesBackButton = true 
         
         tableView.register( UINib(nibName: K.cellNibName , bundle: nil ), forCellReuseIdentifier: K.cellIdentifier )
-    
+        
+        loadMessages();
 
     }
     
+    func loadMessages() {
+        db.collection(K.FStore.collectionName).getDocuments() { (querySnapshot, err) in
+          if let err = err {
+            print("Error getting documents: \(err)")
+          } else {
+              if let snapDocs =  querySnapshot?.documents {
+                  
+                  for docs in snapDocs {
+                      let data = docs.data()
+                      if let sender = data[K.FStore.senderField] as? String ,  let body = data[K.FStore.bodyField] as? String {
+                          self.chatHistory.append(Messages(sender: sender, body: body))
+                          
+                          DispatchQueue.main.async {
+                              self.tableView.reloadData()
+                          }
+                           
+                          
+                      }
+                  }
+                  
+                  
+            }
+              
+              
+          }
+        }
+        
+    }
+    
     @IBAction func sendPressed(_ sender: UIButton) {
+        
+
+        if let messageBody = messageTextfield.text , let messageSender = Auth.auth().currentUser?.email {
+            
+            db.collection(K.FStore.collectionName).addDocument(data: [
+                K.FStore.senderField: messageSender,
+                K.FStore.bodyField : messageBody
+            ]) { err in
+              if let err = err {
+                print("Error adding document: \(err)")
+              } else {
+                print("Document added")
+              }
+            }
+            
+            
+        }
+
     }
     
 
