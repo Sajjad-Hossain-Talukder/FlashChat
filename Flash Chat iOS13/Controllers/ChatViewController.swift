@@ -11,7 +11,7 @@ import FirebaseAuth
 import FirebaseFirestore
 
 class ChatViewController: UIViewController {
-
+    
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var messageTextfield: UITextField!
     
@@ -22,16 +22,15 @@ class ChatViewController: UIViewController {
         
         super.viewDidLoad()
         
-
+        title = "⚡️FlashChat"
+        navigationItem.hidesBackButton = true
+        
         tableView.dataSource = self
         // tableView.delegate = self
-        
-        title = "⚡️FlashChat"
-        navigationItem.hidesBackButton = true 
-        
         tableView.register( UINib(nibName: K.cellNibName , bundle: nil ), forCellReuseIdentifier: K.cellIdentifier )
+        
         loadMessages();
-
+        
     }
     
     func loadMessages() {
@@ -43,34 +42,35 @@ class ChatViewController: UIViewController {
         
         db.collection(K.FStore.collectionName).order(by: K.FStore.dateField)
             .addSnapshotListener() { (querySnapshot, err) in
-          if let err = err {
-            print("Error getting documents: \(err)")
-          } else {
-              
-              self.chatHistory = []
-              
-              if let snapDocs =  querySnapshot?.documents {
-                  
-                  for docs in snapDocs {
-                      print(docs.documentID)
-                      let data = docs.data()
-                      if let sender = data[K.FStore.senderField] as? String ,  let body = data[K.FStore.bodyField] as? String {
-                          self.chatHistory.append(Messages(sender: sender, body: body))
-                          
-                          DispatchQueue.main.async {
-                              self.tableView.reloadData()
-                          }
-                           
-                          
-                      }
-                  }
-                  
-                  
+                if let err = err {
+                    print("Error getting documents: \(err)")
+                } else {
+                    
+                    self.chatHistory = []
+                    
+                    if let snapDocs =  querySnapshot?.documents {
+                        
+                        for docs in snapDocs {
+                            //print(docs.documentID)
+                            let data = docs.data()
+                            if let sender = data[K.FStore.senderField] as? String ,  let body = data[K.FStore.bodyField] as? String {
+                                self.chatHistory.append(Messages(sender: sender, body: body))
+                                
+                                DispatchQueue.main.async {
+                                    self.tableView.reloadData()
+                                    let index = IndexPath(row: self.chatHistory.count - 1 , section: 0 )
+                                    self.tableView.scrollToRow(at: index , at: .top , animated: true )
+                                }
+                            
+                            }
+                        }
+                        
+                        
+                    }
+                    
+                    
+                }
             }
-              
-              
-          }
-        }
         
     }
     
@@ -84,29 +84,29 @@ class ChatViewController: UIViewController {
                 K.FStore.bodyField : messageBody,
                 K.FStore.dateField : Date().timeIntervalSince1970
             ]) { err in
-              if let err = err {
-                print("Error adding document: \(err)")
-              } else {
-                print("Document added")
-              }
+                if let err = err {
+                    print("Error adding document: \(err)")
+                } else {
+                    DispatchQueue.main.async {
+                        self.messageTextfield.text = ""
+                    }
+                }
             }
             
             
         }
         
-        messageTextfield.text = ""
-
     }
     
-
+    
     @IBAction func logoutPressed(_ sender: UIBarButtonItem) {
         
         let firebaseAuth = Auth.auth()
         do {
-          try firebaseAuth.signOut()
+            try firebaseAuth.signOut()
             navigationController?.popToRootViewController(animated: true)
         } catch let signOutError as NSError {
-          print("Error signing out: %@", signOutError)
+            print("Error signing out: %@", signOutError)
         }
     }
 }
@@ -125,21 +125,21 @@ extension ChatViewController : UITableViewDataSource {
             cell.leftMessageAvatar.isHidden = false
             cell.rightMessageAvatar.isHidden = true
             cell.messageLabel.text = chatHistory[indexPath.row].body
-            cell.messageView.backgroundColor = UIColor(named: K.BrandColors.purple)
-            cell.messageLabel.textColor = .white
+            cell.messageView.backgroundColor = UIColor(named: K.BrandColors.lightPurple)
+            cell.messageLabel.textColor = UIColor(named:  K.BrandColors.purple )
             
             
         } else {
             
             cell.leftMessageAvatar.isHidden = true
-            cell.rightMessageAvatar.isHidden = false 
+            cell.rightMessageAvatar.isHidden = false
             cell.messageLabel.text = chatHistory[indexPath.row].body
-            cell.messageView.backgroundColor = UIColor(named: K.BrandColors.blue)
-            cell.messageLabel.textColor = .black
+            cell.messageView.backgroundColor = UIColor(named: K.BrandColors.lighBlue)
+            cell.messageLabel.textColor = UIColor(named: K.BrandColors.blue )
             
         }
         
-
+        
         
         
         
