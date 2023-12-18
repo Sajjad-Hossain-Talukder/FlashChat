@@ -9,6 +9,7 @@
 import UIKit
 import FirebaseAuth
 import FirebaseFirestore
+import IQKeyboardManagerSwift
 
 class ChatViewController: UIViewController {
 
@@ -21,6 +22,11 @@ class ChatViewController: UIViewController {
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        
+        IQKeyboardManager.shared.enable = true
+        IQKeyboardManager.shared.enableAutoToolbar = false
+        IQKeyboardManager.shared.keyboardDistanceFromTextField = CGFloat(30)
+        IQKeyboardManager.shared.shouldResignOnTouchOutside = true
         
         tableView.dataSource = self
         // tableView.delegate = self
@@ -93,7 +99,7 @@ class ChatViewController: UIViewController {
             
         }
         
-        messageTextfield.text = "" 
+        messageTextfield.text = ""
 
     }
     
