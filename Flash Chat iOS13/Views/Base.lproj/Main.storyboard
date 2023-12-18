@@ -366,12 +366,17 @@
         <scene sceneID="kjx-Kl-Prz">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="htn-e4-Dez" sceneMemberID="viewController">
+                    <extendedEdge key="edgesForExtendedLayout"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="vUJ-JO-zNf">
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" id="vUJ-JO-zNf">
                         <rect key="frame" x="0.0" y="48" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="CMZ-WV-WNE">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
                     <connections>
                         <segue destination="Tim-3B-f4n" kind="relationship" relationship="rootViewController" id="elc-1g-lNA"/>
                     </connections>

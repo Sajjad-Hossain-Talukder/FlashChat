@@ -9,7 +9,6 @@
 import UIKit
 import FirebaseAuth
 import FirebaseFirestore
-import IQKeyboardManagerSwift
 
 class ChatViewController: UIViewController {
 
@@ -23,11 +22,7 @@ class ChatViewController: UIViewController {
         
         super.viewDidLoad()
         
-        IQKeyboardManager.shared.enable = true
-        IQKeyboardManager.shared.enableAutoToolbar = false
-        IQKeyboardManager.shared.keyboardDistanceFromTextField = CGFloat(30)
-        IQKeyboardManager.shared.shouldResignOnTouchOutside = true
-        
+
         tableView.dataSource = self
         // tableView.delegate = self
         
@@ -123,12 +118,30 @@ extension ChatViewController : UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        
         let cell = tableView.dequeueReusableCell(withIdentifier: K.cellIdentifier , for: indexPath ) as! MessageCell
         
+        if chatHistory[indexPath.row].sender == Auth.auth().currentUser?.email {
+            
+            cell.leftMessageAvatar.isHidden = false
+            cell.rightMessageAvatar.isHidden = true
+            cell.messageLabel.text = chatHistory[indexPath.row].body
+            cell.messageView.backgroundColor = UIColor(named: K.BrandColors.purple)
+            cell.messageLabel.textColor = .white
+            
+            
+        } else {
+            
+            cell.leftMessageAvatar.isHidden = true
+            cell.rightMessageAvatar.isHidden = false 
+            cell.messageLabel.text = chatHistory[indexPath.row].body
+            cell.messageView.backgroundColor = UIColor(named: K.BrandColors.blue)
+            cell.messageLabel.textColor = .black
+            
+        }
         
-        cell.messageLabel.text = chatHistory[indexPath.row].body
+
+        
+        
         
         return cell
     }

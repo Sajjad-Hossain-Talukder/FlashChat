@@ -15,13 +15,13 @@ class MessageCell: UITableViewCell {
     
     @IBOutlet weak var messageLabel: UILabel!
     
-    @IBOutlet weak var messageAvatar: UIImageView!
+    @IBOutlet weak var leftMessageAvatar: UIImageView!
     
-    
+    @IBOutlet weak var rightMessageAvatar: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        messageView.layer.cornerRadius = messageView.frame.size.height / 5
+        messageView.layer.cornerRadius = messageView.frame.size.height / 4
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
