@@ -119,12 +119,12 @@ extension ChatViewController : UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: K.cellIdentifier , for: indexPath ) as! MessageCell
+        cell.messageLabel.text = chatHistory[indexPath.row].body
         
         if chatHistory[indexPath.row].sender == Auth.auth().currentUser?.email {
             
             cell.leftMessageAvatar.isHidden = false
             cell.rightMessageAvatar.isHidden = true
-            cell.messageLabel.text = chatHistory[indexPath.row].body
             cell.messageView.backgroundColor = UIColor(named: K.BrandColors.lightPurple)
             cell.messageLabel.textColor = UIColor(named:  K.BrandColors.purple )
             
@@ -133,15 +133,10 @@ extension ChatViewController : UITableViewDataSource {
             
             cell.leftMessageAvatar.isHidden = true
             cell.rightMessageAvatar.isHidden = false
-            cell.messageLabel.text = chatHistory[indexPath.row].body
             cell.messageView.backgroundColor = UIColor(named: K.BrandColors.lighBlue)
             cell.messageLabel.textColor = UIColor(named: K.BrandColors.blue )
             
         }
-        
-        
-        
-        
         
         return cell
     }
