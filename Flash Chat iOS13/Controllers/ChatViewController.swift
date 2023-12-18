@@ -14,7 +14,7 @@ class ChatViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var messageTextfield: UITextField!
     
-    let chatHistory: [Messages] = [Messages(sender: "sajjad.xotech.com@gmail.com", body: "Hey") , Messages(sender: "arman.xotech.com@gmail.com", body: "Hello!!"), Messages(sender: "sajjad.xotech.com@gmail.com", body: "What's up ?")]
+    let chatHistory: [Messages] = [Messages(sender: "sajjad.xotech.com@gmail.com", body: "Hey fjgf dffsjddsdsdf f f df gsdkd f sdkfg dsgf gdfgd gd dsf s kf kkdfj    f df df gkdgfdgf dgf dgf dsfg d dsfg d fsdf f ddsfhgdds f") , Messages(sender: "arman.xotech.com@gmail.com", body: "Hello!!"), Messages(sender: "sajjad.xotech.com@gmail.com", body: "What's up ?")]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,6 +24,8 @@ class ChatViewController: UIViewController {
         
         title = "⚡️FlashChat"
         navigationItem.hidesBackButton = true 
+        
+        tableView.register( UINib(nibName: K.cellNibName , bundle: nil ), forCellReuseIdentifier: K.cellIdentifier )
     
 
     }
@@ -53,8 +55,10 @@ extension ChatViewController : UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: K.cellIdentifier , for: indexPath )
-        cell.textLabel?.text = chatHistory[indexPath.row].body
+        let cell = tableView.dequeueReusableCell(withIdentifier: K.cellIdentifier , for: indexPath ) as! MessageCell
+        
+        
+        cell.messageLabel.text = chatHistory[indexPath.row].body
         
         return cell
     }
